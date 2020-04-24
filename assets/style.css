@@ -13,6 +13,11 @@ html, body {
     background-color: #3a506b;
 }
 
+p{
+    color: #ccc9dc;
+    font-family: monospace;
+}
+
 .heading {
     color: #ccc9dc;
     font-size: 75px;
@@ -172,6 +177,6 @@ th {
 }
 
 .footer {
-    color: white;
+    color: #ccc9dc;
 }
 

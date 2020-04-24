@@ -89,7 +89,11 @@ app.layout = html.Div(className='main', children=[
                        className="selectedTimeSeries", ),
               ], className='largeTableContainer'),
     html.Hr(),
-    html.P(children="Source Code Hosted on Github - Tommy Yong", className='footer')
+    html.Div([html.P("Source Code Hosted on Github"),
+              html.A("Tommy Yong", href="https://github.com/tommyyong93/Covid19Dashboard"),
+              html.Br(),
+              html.A("Dataset provided by Johns Hopkins University Center for Systems Science and Engineering",
+                     href="https://github.com/CSSEGISandData/COVID-19")]),
 ])
 
 
