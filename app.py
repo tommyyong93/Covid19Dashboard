@@ -18,11 +18,11 @@ app.layout = html.Div(className='main', children=[
     html.Br(),
     html.Div([
         html.Div([html.H4(children='Total Cases: '),
-                  html.P(data.dfTotalConfirmed[-1])], className='headerTitle confirmed'),
+                  html.H2(f"{data.dfTotalConfirmed[-1]:,d}")], className='headerTitle confirmed'),
         html.Div([html.H4(children='Total Deaths: '),
-                  html.P(data.dfTotalDeaths[-1])], className='headerTitle death'),
+                  html.H2(f"{data.dfTotalDeaths[-1]:,d}")], className='headerTitle death'),
         html.Div([html.H4(children='Total Recovered: '),
-                  html.P(data.dfTotalRecovered[-1])], className='headerTitle recovered'),
+                  html.H2(f"{data.dfTotalRecovered[-1]:,d}")], className='headerTitle recovered'),
     ], className='topBanner'
     ),
     html.Div([html.Div([

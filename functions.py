@@ -243,12 +243,10 @@ def drawMap(mapdata):
                             size=np.log(mapdata['Confirmed'] + 1), opacity=0.7, size_max=20,
                             color_discrete_sequence=['#ccc9dc'], zoom=1, width=1000,
                             center=dict(lat=37.0902, lon=-95.7129),
-                            hover_data=[mapdata['Confirmed'], mapdata['Deaths'], mapdata['Recovered'],
-                                        mapdata['Current Confirmed'], mapdata['Current Deaths'],
-                                        mapdata['Current Recovered']],
+                            hover_data=[mapdata['Confirmed'], mapdata['Deaths'], mapdata['Recovered']],
                             )
-    fig.update_layout(mapbox_style="mapbox://styles/mapbox/dark-v10",
-                      mapbox_accesstoken="",
+    fig.update_layout(mapbox_style="dark",
+                      mapbox_accesstoken="pk.eyJ1IjoidG9tbXl5b25nIiwiYSI6ImNrOWU5czh3ajAwMWkzbHBjbjBmN2Z5ZzAifQ.iO1gg5UlrfEf8UhpZcOWtQ",
                       )
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0}, autosize=True)
     return fig
