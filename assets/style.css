@@ -1,22 +1,60 @@
+html, body{
+    padding: 0px;
+    margin : 0px;
+    background-color: #3a506b;
+}
+
 .main{
     padding: 0;
     margin: 0;
+    font-family: monospace;
+    text-align: center;
+    background-color: #3a506b;
 }
 
-.large{
-    background-color: blanchedalmond;
+.heading{
+    color: #ccc9dc;
+    font-size: 75px;
+}
+
+.headingSubtext{
+    color: #ccc9dc;
+}
+
+.topBanner{
+    background-color: #3a506b;
     display: flex;
     justify-content: space-around;
     width: 100%;
     margin: auto;
 }
 
+.headerTitle{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-color: black;
+    border-style: solid;
+    width: 250px;
+    margin: auto;
+    border-radius: 100px;
+}
+
 .table{
     display:flex;
     font-family: monospace;
     justify-content: space-around;
-    padding: 0px;
+    padding: 25px;
     margin: 0px;
+}
+
+.titleTable{
+    background-color: aliceblue;
+    border-color: black;
+    border-style: solid;
+    font-size: 15px;
+    border-radius: 10px;
 }
 
 .column{
@@ -28,7 +66,8 @@
     font-size: 12px;
 }
 
-tr{
+.topTable tr{
+    color: #ccc9dc;
     display: flex;
     justify-content: space-between;
     font-size: 12px;
@@ -39,8 +78,69 @@ tr{
     width: auto;
 }
 
-td:not(.CalendarDay){
-    border-bottom: none;
+td{
+    border-bottom: none !important;
 }
 
-.timeseries{}
+.map{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.timeseriesContainer{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0px;
+}
+
+.timeseries{
+    margin: 0px;
+    padding: 0px;
+    width: 45%;
+}
+
+.death{
+    color: red;
+}
+
+.confirmed{
+    color: darkblue;
+}
+
+.recovered{
+    color: green;
+}
+
+.largeTableContainer{
+    text-align: center;
+    display:flex;
+    justify-content: space-evenly;
+    color: #ccc9dc;
+}
+
+#largeTable {
+    display:flex;
+    justify-content: space-evenly;
+    width: 75%;
+    text-align: center;
+
+}
+
+#largeTable tr{
+    text-align: center;
+
+}
+
+#largeTable td{
+    width: auto;
+    text-align: center;
+    background-color: #324a5f;
+}
+
+th{
+    text-align: center !important;
+    background-color: #324a5f !important;
+}
