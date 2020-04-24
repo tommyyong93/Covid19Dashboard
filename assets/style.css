@@ -1,10 +1,11 @@
-html, body{
+html, body {
     padding: 0px;
-    margin : 0px;
+    margin: 0px;
     background-color: #3a506b;
+    font-family: monospace;
 }
 
-.main{
+.main {
     padding: 0;
     margin: 0;
     font-family: monospace;
@@ -12,16 +13,16 @@ html, body{
     background-color: #3a506b;
 }
 
-.heading{
+.heading {
     color: #ccc9dc;
     font-size: 75px;
 }
 
-.headingSubtext{
+.headingSubtext {
     color: #ccc9dc;
 }
 
-.topBanner{
+.topBanner {
     background-color: #3a506b;
     display: flex;
     justify-content: space-around;
@@ -29,8 +30,8 @@ html, body{
     margin: auto;
 }
 
-.headerTitle{
-    background-color: aliceblue;
+.headerTitle {
+    background-color: #ccc9dc;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -41,23 +42,23 @@ html, body{
     border-radius: 100px;
 }
 
-.table{
-    display:flex;
+.table {
+    display: flex;
     font-family: monospace;
     justify-content: space-around;
     padding: 25px;
     margin: 0px;
 }
 
-.titleTable{
-    background-color: aliceblue;
+.titleTable {
+    background-color: #ccc9dc;
     border-color: black;
     border-style: solid;
     font-size: 15px;
     border-radius: 10px;
 }
 
-.column{
+.column {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -66,7 +67,7 @@ html, body{
     font-size: 12px;
 }
 
-.topTable tr{
+.topTable tr {
     color: #ccc9dc;
     display: flex;
     justify-content: space-between;
@@ -78,17 +79,18 @@ html, body{
     width: auto;
 }
 
-td{
+td {
     border-bottom: none !important;
 }
 
-.map{
+.map {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 25px;
 }
 
-.timeseriesContainer{
+.timeseriesContainer {
     display: inline-flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -96,51 +98,80 @@ td{
     padding: 0px;
 }
 
-.timeseries{
+.timeseries {
     margin: 0px;
+    margin-bottom: 25px;
     padding: 0px;
     width: 45%;
-}
-
-.death{
-    color: red;
-}
-
-.confirmed{
-    color: darkblue;
-}
-
-.recovered{
-    color: green;
-}
-
-.largeTableContainer{
-    text-align: center;
-    display:flex;
-    justify-content: space-evenly;
     color: #ccc9dc;
 }
 
-#largeTable {
-    display:flex;
+.death {
+    color: red;
+}
+
+.confirmed {
+    color: darkblue;
+}
+
+.recovered {
+    color: green;
+}
+
+.tableCaption {
+    font-size: 15px;
+    color: #ccc9dc;
+}
+
+.largeTableContainer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
     justify-content: space-evenly;
-    width: 75%;
+    color: #ccc9dc;
+    margin: 25px;
+}
+
+.selectedTimeSeries {
+    align-items: center;
+    align-self: center;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#largeTable {
+    justify-content: center;
+    width: 45%;
     text-align: center;
 
 }
 
-#largeTable tr{
+#largeTable tr {
     text-align: center;
 
 }
 
-#largeTable td{
+#largeTable td {
     width: auto;
     text-align: center;
     background-color: #324a5f;
 }
 
-th{
+th {
     text-align: center !important;
     background-color: #324a5f !important;
 }
+
+#countryTitle {
+    display: flex;
+    font-size: 35px;
+    justify-content: center;
+    text-align: center;
+    color: #ccc9dc;
+}
+
+.footer {
+    color: white;
+}
+

@@ -9,7 +9,7 @@ import datetime
 import data
 
 
-def drawTimeSeries(dataframe, seconddf, thirddf):
+def drawGlobalTimeSeriesCumulative(dataframe, seconddf, thirddf):
     dataframe.index = pd.to_datetime(dataframe.index)
 
     fig = go.Figure()
@@ -64,10 +64,126 @@ def drawTimeSeries(dataframe, seconddf, thirddf):
     return fig
 
 
-def drawCountryTimeSeries(dataframe):
+def drawGlobalTimeSeriesDaily(dataframe, seconddf, thirddf):
+    dataframe.index = pd.to_datetime(dataframe.index)
+
+    dataframe = (dataframe - dataframe.shift(1)).drop(dataframe.index[0])
+    seconddf = (seconddf - seconddf.shift(1)).drop(seconddf.index[0])
+    thirddf = (thirddf - thirddf.shift(1)).drop(thirddf.index[0])
+
     fig = go.Figure()
 
-    colors = ['#FF00FF', '#FFFF00', '#00FFFF', '#F0F0F0', '#FF0000', '#123421', '#002211', '#00FF00', '#001122',
+    fig.add_trace(go.Scatter(x=dataframe.index, y=dataframe,
+                             mode='lines+markers',
+                             name='Confirmed',
+                             line=dict(color='#3372FF', width=2),
+                             fill='tozeroy', ))
+    fig.add_trace(go.Scatter(x=dataframe.index, y=seconddf,
+                             mode='lines+markers',
+                             name='Deaths',
+                             line=dict(color='#FF6347', width=2),
+                             fill='tozeroy', ))
+    fig.add_trace(go.Scatter(x=dataframe.index, y=thirddf,
+                             mode='lines+markers',
+                             name='Recovered',
+                             line=dict(color='#228B22', width=2),
+                             fill='tozeroy', ))
+    fig.update_layout(
+        hovermode='x',
+        font=dict(
+            family="Courier New, monospace",
+            size=14,
+            color='#FFFFFF',
+        ),
+        legend=dict(
+            x=0.02,
+            y=1,
+            traceorder="normal",
+            font=dict(
+                family="monospace",
+                size=12,
+                color='#000000'
+            ),
+            bgcolor='#ccc9dc',
+            borderwidth=1
+        ),
+        paper_bgcolor='#3a506b',
+        plot_bgcolor='#3a506b',
+        margin=dict(l=0,
+                    r=0,
+                    t=0,
+                    b=0
+                    ),
+        height=300,
+    )
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='#3A3A3A')
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='#3A3A3A')
+    fig.update_yaxes(zeroline=True, zerolinewidth=2, zerolinecolor='#3A3A3A')
+
+    return fig
+
+
+def drawSingleCountryTimeSeries(confirmed, deaths, recovered, country):
+    fig = go.Figure()
+
+    colors = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51', '#ffcdb2', '#ffb4a2', '#e5989b', '#6d6875',
+              '#0000FF']
+
+    fig.add_trace(go.Scatter(x=pd.to_datetime(confirmed.iloc[country, 4:].index), y=confirmed.iloc[country, 4:],
+                             mode='lines+markers',
+                             name="Confirmed",
+                             line=dict(color=colors[1], width=2),
+                             fill='none', ))
+    fig.add_trace(go.Scatter(x=pd.to_datetime(deaths.iloc[country, 4:].index), y=deaths.iloc[country, 4:],
+                             mode='lines+markers',
+                             name="Deaths",
+                             line=dict(color=colors[2], width=2),
+                             fill='none', ))
+    fig.add_trace(go.Scatter(x=pd.to_datetime(recovered.iloc[country, 4:].index), y=recovered.iloc[country, 4:],
+                             mode='lines+markers',
+                             name="Recovered",
+                             line=dict(color=colors[3], width=2),
+                             fill='none', ))
+
+    fig.update_layout(
+        hovermode='x',
+        font=dict(
+            family="Courier New, monospace",
+            size=14,
+            color='#FFFFFF',
+        ),
+        legend=dict(
+            x=0.02,
+            y=1,
+            traceorder="normal",
+            font=dict(
+                family="monospace",
+                size=12,
+                color='#000000'
+            ),
+            bgcolor='#ccc9dc',
+            borderwidth=1
+        ),
+        paper_bgcolor='#3a506b',
+        plot_bgcolor='#3a506b',
+        margin=dict(l=0,
+                    r=0,
+                    t=0,
+                    b=0
+                    ),
+        height=300,
+    )
+    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='#3A3A3A')
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='#3A3A3A')
+    fig.update_yaxes(zeroline=True, zerolinewidth=2, zerolinecolor='#3A3A3A')
+
+    return fig
+
+
+def drawTenCountryTimeSeries(dataframe):
+    fig = go.Figure()
+
+    colors = ['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51', '#ffcdb2', '#ffb4a2', '#e5989b', '#6d6875',
               '#0000FF']
 
     for i in range(0, 10):
@@ -125,11 +241,11 @@ def generateTable(dataframe, max_rows=10):
 def drawMap(mapdata):
     fig = px.scatter_mapbox(mapdata, lat=mapdata["Lat"], lon=mapdata["Long"], hover_name=mapdata["Country/Region"],
                             size=np.log(mapdata['Confirmed'] + 1), opacity=0.7, size_max=20,
-                            color_discrete_sequence=['#ccc9dc'], zoom=1, width = 1000,
+                            color_discrete_sequence=['#ccc9dc'], zoom=1, width=1000,
                             center=dict(lat=37.0902, lon=-95.7129),
-                            hover_data = [mapdata['Confirmed'], mapdata['Deaths'], mapdata['Recovered'],
-                            mapdata['Current Confirmed'], mapdata['Current Deaths'],
-                            mapdata['Current Recovered']],
+                            hover_data=[mapdata['Confirmed'], mapdata['Deaths'], mapdata['Recovered'],
+                                        mapdata['Current Confirmed'], mapdata['Current Deaths'],
+                                        mapdata['Current Recovered']],
                             )
     fig.update_layout(mapbox_style="mapbox://styles/mapbox/dark-v10",
                       mapbox_accesstoken="",
